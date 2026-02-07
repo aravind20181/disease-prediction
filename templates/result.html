@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>Heart Disease Prediction Dashboard</h1>
+            <p>Early detection and risk assessment for better health outcomes</p>
+        </div>
+
+        <!-- Patient Details -->
+        <div class="section">
+            <div class="section-title">Patient Details</div>
+            <div class="patient-details" id="patient-details">
+                {% for key, value in patient_data.items() %}
+                <div class="detail-card">
+                    <i class="fas fa-user-md"></i>
+                    <h3>{{ key }}</h3>
+                    <p>{{ value }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Risk Prediction -->
+        <div class="section">
+            <div class="section-title">Risk Prediction</div>
+            <div class="risk-prediction {% if risk_level == 'LOW 🟢' %}low-risk{% endif %}" id="risk-prediction">
+                <h2>{{ risk_level }}</h2>
+                <p>{{ prediction_text }}</p>
+            </div>
+        </div>
+
+        <!-- Analytical Graphs -->
+        <div class="section">
+            <div class="section-title">Analytical Graphs</div>
+            <div class="graphs">
+                <div class="graph-card">
+                    <h3>Risk Distribution</h3>
+                    <canvas id="riskPie"></canvas>
+                </div>
+                <div class="graph-card">
+                    <h3>Vitals & Metrics</h3>
+                    <canvas id="metricsLine"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="{{ url_for('heart') }}" class="back-btn">🔙 Back to Form</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Risk Pie Chart
+            const ctxPie = document.getElementById('riskPie').getContext('2d');
+            new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: {{ charts['risk_pie']['labels']|tojson }},
+                    datasets: [{
+                        data: {{ charts['risk_pie']['data']|tojson }},
+                        backgroundColor: {{ charts['risk_pie']['colors']|tojson }},
+                        borderWidth: 1
+                    }]
+                },
+                options: { responsive: true }
+            });
+
+            // Vitals Line Chart
+            const ctxLine = document.getElementById('metricsLine').getContext('2d');
+            new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: {{ charts['chol_line']['labels']|tojson }},
+                    datasets: [{
+                        label: 'Patient Metrics',
+                        data: {{ charts['chol_line']['data']|tojson }},
+                        borderColor: '{{ charts["chol_line"]["colors"][0] }}',
+                        fill: false,
+                        tension: 0.3,
+                        pointBackgroundColor: '{{ charts["chol_line"]["colors"][0] }}'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

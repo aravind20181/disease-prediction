@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Heart Disease Predictor</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Heart Disease Predictor</h1>
+        <p>Predict your risk of heart disease using our AI-powered tool.</p>
+        <div>
+            <a href="{{ url_for('heart') }}" class="btn btn-primary">Check Your Risk</a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>How It Works</h2>
+    <div class="cards-container">
+        <div class="card">
+            <h3>Input Your Data</h3>
+            <p>Enter age, cholesterol, blood pressure, heart rate, and other indicators.</p>
+        </div>
+        <div class="card">
+            <h3>Get Prediction</h3>
+            <p>Our model calculates your probability of heart disease and risk level.</p>
+        </div>
+        <div class="card">
+            <h3>Visual Dashboard</h3>
+            <p>View detailed charts and analysis to understand your heart health.</p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
