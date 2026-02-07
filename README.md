@@ -1,10 +1,6 @@
 # Heart Disease Risk Predictor 🫀
 
-<<<<<<< HEAD
 A **machine learning web application** that predicts the risk of heart disease based on patient health metrics. The app takes inputs such as age, sex, chest pain type, resting blood pressure, cholesterol, fasting blood sugar, resting ECG, maximum heart rate, exercise-induced angina, ST depression (oldpeak), slope of the peak exercise ST segment, number of major vessels, and thalassemia type. It outputs a **risk level: LOW 🟢, MEDIUM 🟡, or HIGH 🔴**.
-=======
-A **machine learning web application** that predicts the risk of heart disease based on patient health metrics. The app takes inputs such as age, gender, chest pain type, resting blood pressure, cholesterol, fasting blood sugar, resting ECG, maximum heart rate, exercise-induced angina, ST depression (oldpeak), slope of the peak exercise ST segment, number of major vessels, and thalassemia type. It outputs a **risk level: LOW 🟢, MEDIUM 🟡, or HIGH 🔴**.
->>>>>>> 783c58b15b5da91c1fd461976033d860ebee91c3
 
 This project demonstrates an **end-to-end machine learning workflow**, including data preprocessing, feature scaling, model training, evaluation, and deployment using Flask.  
 
@@ -30,7 +26,6 @@ This project demonstrates an **end-to-end machine learning workflow**, including
 - **joblib** – model serialization  
 
 ---
-
 ## ⚠️ Limitations
 
 - This model is trained on a **small, publicly available dataset**, which may not represent real-world patient populations accurately.
@@ -44,6 +39,5 @@ This project demonstrates an **end-to-end machine learning workflow**, including
 > This project is intended **only for learning and demonstration purposes** and is **not suitable for real-world medical use**.
 
 ---
-
 
 
